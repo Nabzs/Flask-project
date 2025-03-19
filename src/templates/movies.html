@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Liste des films</title>
+    <script>
+        function searchMovies() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const rows = document.querySelectorAll("table tr:not(:first-child)");
+            rows.forEach(row => {
+                const movieName = row.querySelector("td:nth-child(2)").innerText.toLowerCase();
+                if (movieName.includes(input)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Liste des films</h1>
+
+    <input type="text" id="searchInput" onkeyup="searchMovies()" placeholder="Rechercher un film...">
+
+    <table border="1" width="100%">
+        <tr>
+            <td class="poster-column">Affiche</td>
+            <td>Nom</td>
+            <td>Réalisateur</td>
+            <td>Année</td>
+            <td><button><a href='/add'>Ajouter un film</a></button></td>
+        </tr>
+        {% for movie in movies %}
+        <tr>
+            <td class="poster-column"><img src="{{ url_for('static', filename='img/' ~ movie.poster) }}" alt="{{ movie.name }}"></td>
+            <td>{{ movie.name }}</td>
+            <td>{{ movie.director }}</td>
+            <td>{{ movie.year }}</td>
+            <td>
+                <button><a href='/view/{{ loop.index0 }}'>Voir</a></button>
+                <button><a href='/update/{{ loop.index0 }}'>Modifier</a></button>
+                <form action="/delete/{{ loop.index0 }}" method="post" style="display:inline;">
+                    <button type="submit">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p><a href='/'>Retour au menu</a></p>
+</body>
+</html>

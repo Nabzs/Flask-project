@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Modifier un film</title>
+</head>
+<body>
+    <h1>Modifier un film</h1>
+    <form action="/update/{{ movie.id }}" method="post">
+        <label for="name">Nom:</label>
+        <input type="text" id="name" name="name" value="{{ movie.name }}"><br>
+        <label for="director">Réalisateur:</label>
+        <input type="text" id="director" name="director" value="{{ movie.director }}"><br>
+        <label for="year">Année:</label>
+        <input type="text" id="year" name="year" value="{{ movie.year }}"><br>
+        <label for="comment">Commentaire:</label>
+        <input type="text" id="comment" name="comment" value="{{ movie.comment }}"><br>
+        <input type="submit" value="Modifier">
+    </form>
+    <p><a href="/movies">Retour à la liste des films</a></p>
+</body>
+</html>

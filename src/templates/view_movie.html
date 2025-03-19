@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Détails du film</title>
+</head>
+<body>
+    <h1>Détails du film</h1>
+    <div>
+        <img src="{{ url_for('static', filename='img/' ~ movie.poster) }}" alt="{{ movie.name }}" width="200">
+        <p><strong>Nom:</strong> {{ movie.name }}</p>
+        <p><strong>Réalisateur:</strong> {{ movie.director }}</p>
+        <p><strong>Année:</strong> {{ movie.year }}</p>
+        <p><strong>Commentaire:</strong> {{ movie.comment }}</p>
+    </div>
+    <p><a href="/movies">Retour à la liste des films</a></p>
+</body>
+</html>

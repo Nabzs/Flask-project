@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Devine le nombre</title>
+    <script>
+        async function submitGuess() {
+            const guess = document.getElementById("myInput").value;
+            const response = await fetch('/guess', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ guess: guess })
+            });
+            const result = await response.json();
+            document.getElementById("feedback").innerText = result.message;
+            document.getElementById("myInput").value = '';
+        }
+    </script>
+</head>
+<body>
+    <h1>Devinez le nombre</h1>
+
+    <a href="/movies">Lien</a>
+    <p>Devine le nombre entre 1 et 100:</p>
+    <input type="text" id="myInput" placeholder="Entrez votre nombre">
+    <button onclick="submitGuess()">Envoyer</button>
+    <p id="feedback"></p>
+</body>
+</html>

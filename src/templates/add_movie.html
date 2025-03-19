@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Ajouter un film</title>
+</head>
+<body>
+    <h1>Ajouter un film</h1>
+    <form action="/add" method="post" enctype="multipart/form-data">
+        <label for="name">Nom:</label>
+        <input type="text" id="name" name="name"><br>
+        <label for="director">Réalisateur:</label>
+        <input type="text" id="director" name="director"><br>
+        <label for="year">Année:</label>
+        <input type="text" id="year" name="year"><br>
+        <label for="comment">Commentaire:</label>
+        <input type="text" id="comment" name="comment"><br>
+        <label for="poster">Affiche:</label>
+        <input type="file" id="poster" name="poster"><br>
+        <input type="submit" value="Ajouter">
+    </form>
+    <p><a href="/movies">Retour à la liste des films</a></p>
+</body>
+</html>
